@@ -31,19 +31,19 @@
 </div>
     {% endif %}
     {% else %}
+    <h1 class="text-center my_title">MovieZone</h1>
         <div>
              <img class="my_image my_image_padding" src="{% static 'img/moviebanner.jpg' %}" alt="our products" width="100%">
         </div>
             <br>
         <div>
-                <h1 class="text-center my_title">MovieZone</h1>
             <p class="text-justify">MovieZone is your ultimate destination for discovering, sharing, and discussing your favorite movies with a global community of film enthusiasts. Whether you're a cinephile seeking hidden gems or a casual viewer looking for the latest blockbuster, MovieZone offers a comprehensive platform to explore, review, and interact with a diverse range of cinematic experiences.</p>
 
         </div>
         {% endif %}
 </div>
 <div class="container">
-
+{% if user.is_authenticated %}
 <div class="row">
    {% if movies %}
 
@@ -75,7 +75,11 @@
 {% else %}
      <p style="color:red;font-size:20px" class="text-center">no movies available!!</p>
 {% endif %}
+    {% endif %}
 </div>
-
+{% if not user.is_authenticated %}
+<p class="text-center" style="color:red">Please login to view our movie collection and to enjoy our services</p>
+<p class="text-center"><a class="btn btn-primary" href="{% url 'login:login' %}">Login</a></p>
+{% endif %}
 
 {% endblock %}

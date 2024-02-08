@@ -5,7 +5,6 @@ from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404
 from .models import Category,Movie
 # Create your views here.
-@login_required(login_url='login:login')
 def allmovies(request,c_slug=None):
     c_page = None
     movie_list = None
@@ -32,7 +31,7 @@ def moviedetails(request,m_slug,c_slug):
     except Exception as e:
         raise e
     return render(request, 'movie.html', {'movie': movie})
-@login_required(login_url='login:login')
+
 def SearchResult(request):
     movies=None
     query=None

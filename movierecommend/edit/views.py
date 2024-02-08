@@ -24,7 +24,7 @@ def addlist(request):
 
 @login_required(login_url='login:login')
 def updatelist(request, m_slug):
-    movie=Movie.objects.get(title=m_slug)
+    movie = get_object_or_404(Movie, slug=m_slug)
     form=MovieForm(request.POST or None,instance=movie)
     if request.method == 'POST':
             if form.is_valid():

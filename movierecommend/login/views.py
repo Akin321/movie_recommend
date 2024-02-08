@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.contrib import auth, messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.hashers import check_password
@@ -59,7 +60,8 @@ def register(request):
 
 def logout(request):
     auth.logout(request)
-    return redirect(reverse('login:login'))
+    #return redirect(reverse('login:login'))
+    return redirect(settings.LOGOUT_REDIRECT_URL)
 
 @login_required
 def userprofile(request):
